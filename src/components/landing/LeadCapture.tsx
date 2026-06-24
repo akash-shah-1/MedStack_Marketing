@@ -1,5 +1,24 @@
 import { useState } from "react";
 import { ArrowRight, CheckCircle2, Activity } from "lucide-react";
+import { Link } from "@tanstack/react-router";
+
+const footerCols: { title: string; items: { label: string; to: string }[] }[] = [
+  {
+    title: "Product",
+    items: [
+      { label: "Features", to: "/features" },
+      { label: "Pricing", to: "/pricing" },
+      { label: "Security", to: "/security" },
+    ],
+  },
+  {
+    title: "Company",
+    items: [
+      { label: "About", to: "/about" },
+      { label: "Contact", to: "/contact" },
+    ],
+  },
+];
 
 export function LeadCapture() {
   const [sent, setSent] = useState(false);
@@ -102,20 +121,28 @@ function Footer() {
             </p>
           </div>
 
-          {[
-            ["Product", ["Features", "Workflows", "Pricing", "Security"]],
-            ["Company", ["About", "Customers", "Careers", "Contact"]],
-            ["Resources", ["Docs", "HL7 / FHIR", "Status", "Changelog"]],
-          ].map(([title, items]) => (
-            <div key={title as string}>
-              <div className="text-xs font-semibold uppercase tracking-wider text-slate-ink">{title}</div>
+          {footerCols.map((col) => (
+            <div key={col.title}>
+              <div className="text-xs font-semibold uppercase tracking-wider text-slate-ink">{col.title}</div>
               <ul className="mt-4 space-y-2.5 text-sm text-muted-foreground">
-                {(items as string[]).map((i) => (
-                  <li key={i}><a href="#" className="transition hover:text-teal">{i}</a></li>
+                {col.items.map((i) => (
+                  <li key={i.to}>
+                    <Link to={i.to} className="transition hover:text-teal">
+                      {i.label}
+                    </Link>
+                  </li>
                 ))}
               </ul>
             </div>
           ))}
+          <div>
+            <div className="text-xs font-semibold uppercase tracking-wider text-slate-ink">Resources</div>
+            <ul className="mt-4 space-y-2.5 text-sm text-muted-foreground">
+              {["Docs", "HL7 / FHIR", "Status", "Changelog"].map((i) => (
+                <li key={i}><span className="transition hover:text-teal">{i}</span></li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         <div className="mt-12 flex flex-col items-start justify-between gap-3 border-t border-border pt-6 text-xs text-muted-foreground sm:flex-row sm:items-center">
