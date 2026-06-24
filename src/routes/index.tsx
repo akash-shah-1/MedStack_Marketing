@@ -1,29 +1,42 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
+import { Nav } from "@/components/landing/Nav";
+import { Hero } from "@/components/landing/Hero";
+import { WorkflowSimulator } from "@/components/landing/WorkflowSimulator";
+import { Features } from "@/components/landing/Features";
+import { ROICalculator } from "@/components/landing/ROICalculator";
+import { Pricing } from "@/components/landing/Pricing";
+import { Trust } from "@/components/landing/Trust";
+import { LeadCapture } from "@/components/landing/LeadCapture";
+import { DemoModal } from "@/components/landing/DemoModal";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Your App" },
-      { name: "description", content: "Replace this with a one-sentence description of your app." },
-      { property: "og:title", content: "Your App" },
-      { property: "og:description", content: "Replace this with a one-sentence description of your app." },
+      { title: "MedFlow AI — The Operating System for Modern Hospitals" },
+      { name: "description", content: "Unify clinical workflows, live bed management, and revenue cycles in a single high-performance hospital management platform. HIPAA, GDPR, HL7/FHIR." },
+      { property: "og:title", content: "MedFlow AI — The Operating System for Modern Hospitals" },
+      { property: "og:description", content: "Enterprise hospital management system: EHR, live bed control, POS billing, departmental queues, and roster scheduling — in one platform." },
     ],
   }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
+  const [demoOpen, setDemoOpen] = useState(false);
+  const openDemo = () => setDemoOpen(true);
+
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <main className="min-h-screen bg-background text-foreground">
+      <Nav onDemo={openDemo} />
+      <Hero onDemo={openDemo} />
+      <WorkflowSimulator />
+      <Features />
+      <ROICalculator />
+      <Pricing onDemo={openDemo} />
+      <Trust />
+      <LeadCapture />
+      <DemoModal open={demoOpen} onClose={() => setDemoOpen(false)} />
+    </main>
   );
 }
