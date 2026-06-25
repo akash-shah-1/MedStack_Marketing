@@ -132,7 +132,7 @@ function Stepper({ step }: { step: number }) {
   );
 }
 
-function Field({ label, value, onChange, ...props }: any) {
+function Field({ label, value, onChange, ...props }: { label: string; value: string; onChange: (v: string) => void; [k: string]: any }) {
   return (
     <label className="block">
       <span className="mb-1 block text-xs font-medium text-slate-ink/80">{label}</span>
