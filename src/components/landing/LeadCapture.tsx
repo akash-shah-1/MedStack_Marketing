@@ -9,6 +9,7 @@ const footerCols: { title: string; items: { label: string; to: string }[] }[] = 
       { label: "Features", to: "/features" },
       { label: "Pricing", to: "/pricing" },
       { label: "Security", to: "/security" },
+      { label: "Integrations", to: "/integrations" },
     ],
   },
   {
@@ -16,6 +17,15 @@ const footerCols: { title: string; items: { label: string; to: string }[] }[] = 
     items: [
       { label: "About", to: "/about" },
       { label: "Contact", to: "/contact" },
+    ],
+  },
+  {
+    title: "Resources",
+    items: [
+      { label: "Docs", to: "/docs" },
+      { label: "HL7 / FHIR", to: "/integrations" },
+      { label: "Status", to: "/status" },
+      { label: "Changelog", to: "/changelog" },
     ],
   },
 ];
