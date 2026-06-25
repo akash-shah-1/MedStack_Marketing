@@ -172,11 +172,12 @@ export function WorkflowSimulator() {
 
         {/* Stepper */}
         <div className="relative mt-14">
-          <div className="absolute left-0 right-0 top-6 h-px bg-border" />
+          {/* Track + progress are inset to align with first/last icon centers (10% .. 90% for 5 cols) */}
+          <div className="absolute left-[10%] right-[10%] top-6 h-px bg-border" />
           <div
-            className="absolute left-0 top-6 h-px bg-brand transition-all duration-700"
+            className="absolute left-[10%] top-6 h-px bg-gradient-to-r from-teal to-emerald transition-all duration-500"
             style={{
-              width: `${((active + (playing ? progress : 0)) / (stages.length - 1)) * 100}%`,
+              width: `${((active + (playing ? progress : 0)) / (stages.length - 1)) * 80}%`,
             }}
           />
           <ol className="relative grid grid-cols-5 gap-2">
@@ -191,7 +192,8 @@ export function WorkflowSimulator() {
                       setActive(i);
                       setPlaying(true);
                     }}
-                    className={`relative grid h-12 w-12 place-items-center rounded-2xl border transition ${
+                    aria-label={`Go to ${s.title}`}
+                    className={`relative grid h-12 w-12 place-items-center rounded-full border-2 transition ${
                       cur
                         ? "border-teal bg-brand text-primary-foreground shadow-glow scale-110"
                         : done
@@ -201,11 +203,14 @@ export function WorkflowSimulator() {
                   >
                     {done ? <Check size={18} /> : <Icon size={18} />}
                     {cur && (
-                      <svg className="absolute inset-0 -m-1 h-14 w-14" viewBox="0 0 56 56">
+                      <svg
+                        className="pointer-events-none absolute -inset-1.5 h-[60px] w-[60px]"
+                        viewBox="0 0 60 60"
+                      >
                         <circle
-                          cx="28"
-                          cy="28"
-                          r="26"
+                          cx="30"
+                          cy="30"
+                          r="28"
                           fill="none"
                           stroke="currentColor"
                           strokeOpacity="0.15"
@@ -213,17 +218,17 @@ export function WorkflowSimulator() {
                           className="text-teal"
                         />
                         <circle
-                          cx="28"
-                          cy="28"
-                          r="26"
+                          cx="30"
+                          cy="30"
+                          r="28"
                           fill="none"
                           stroke="currentColor"
                           strokeWidth="2"
                           strokeLinecap="round"
                           className="text-teal"
-                          strokeDasharray={2 * Math.PI * 26}
-                          strokeDashoffset={2 * Math.PI * 26 * (1 - progress)}
-                          transform="rotate(-90 28 28)"
+                          strokeDasharray={2 * Math.PI * 28}
+                          strokeDashoffset={2 * Math.PI * 28 * (1 - progress)}
+                          transform="rotate(-90 30 30)"
                           style={{ transition: "stroke-dashoffset 80ms linear" }}
                         />
                       </svg>
@@ -244,6 +249,7 @@ export function WorkflowSimulator() {
             })}
           </ol>
         </div>
+
 
         {/* Detail panel */}
         <div className="mt-12 grid gap-6 lg:grid-cols-5" key={active}>
