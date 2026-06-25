@@ -175,7 +175,7 @@ export function WorkflowSimulator() {
           {/* Track + progress are inset to align with first/last icon centers (10% .. 90% for 5 cols) */}
           <div className="absolute left-[10%] right-[10%] top-6 h-px bg-border" />
           <div
-            className="absolute left-[10%] top-6 h-px bg-gradient-to-r from-teal to-emerald transition-all duration-500"
+            className="absolute left-[10%] top-6 h-px bg-gradient-to-r from-teal to-emerald"
             style={{
               width: `${((active + (playing ? progress : 0)) / (stages.length - 1)) * 80}%`,
             }}
