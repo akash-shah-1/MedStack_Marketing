@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { Clock, TrendingUp, BedDouble } from "lucide-react";
+import { Clock, TrendingUp, BedDouble, Check, Sparkles, ShieldCheck } from "lucide-react";
 
 export function ROICalculator() {
   const [beds, setBeds] = useState(120);
@@ -51,6 +51,64 @@ export function ROICalculator() {
             <p className="mt-8 text-xs text-muted-foreground">
               Estimates based on aggregated MedFlow AI deployment data from 200+ hospitals (2024).
             </p>
+
+            {/* Quick presets */}
+            <div className="mt-6">
+              <div className="mb-2 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+                Try a preset
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {[
+                  { label: "Small clinic", b: 25, a: 12 },
+                  { label: "Mid hospital", b: 120, a: 35 },
+                  { label: "Tertiary care", b: 300, a: 70 },
+                  { label: "Network HQ", b: 480, a: 95 },
+                ].map((p) => {
+                  const active = beds === p.b && admissions === p.a;
+                  return (
+                    <button
+                      key={p.label}
+                      onClick={() => {
+                        setBeds(p.b);
+                        setAdmissions(p.a);
+                      }}
+                      className={`rounded-full border px-3 py-1.5 text-xs font-semibold transition ${
+                        active
+                          ? "border-teal bg-brand text-primary-foreground shadow-glow"
+                          : "border-border bg-white/70 text-slate-ink hover:border-teal/40"
+                      }`}
+                    >
+                      {p.label}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* What's included */}
+            <div className="mt-6 rounded-2xl border border-border bg-white/60 p-4">
+              <div className="mb-2 flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-teal-deep">
+                <Sparkles size={12} className="text-teal" /> Baked into every estimate
+              </div>
+              <ul className="space-y-1.5 text-xs text-slate-ink">
+                {[
+                  "Auto-billing capture across pharmacy, lab & consumables",
+                  "Nurse handoff & documentation time savings",
+                  "TPA / insurance preauth & rejection recovery",
+                  "Faster bed turnaround via auto-discharge",
+                ].map((b) => (
+                  <li key={b} className="flex items-start gap-2">
+                    <Check size={12} className="mt-0.5 shrink-0 text-emerald" />
+                    {b}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="mt-4 flex items-center gap-2 rounded-xl bg-emerald-soft/50 px-3 py-2 text-[11px] text-emerald">
+              <ShieldCheck size={13} />
+              Conservative model · most hospitals exceed these numbers by 15–30%.
+            </div>
           </div>
 
           <div className="grid gap-4 sm:grid-cols-1 lg:col-span-3">

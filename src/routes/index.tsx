@@ -14,6 +14,7 @@ import { Trust } from "@/components/landing/Trust";
 import { FAQ } from "@/components/landing/FAQ";
 import { LeadCapture } from "@/components/landing/LeadCapture";
 import { DemoModal } from "@/components/landing/DemoModal";
+import { Reveal } from "@/components/landing/Reveal";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -35,17 +36,17 @@ function Index() {
     <main className="min-h-screen bg-background text-foreground">
       <Nav onDemo={openDemo} />
       <Hero onDemo={openDemo} />
-      <LogoCloud />
-      <Stats />
-      <WorkflowSimulator />
-      <Features />
-      <Integrations />
-      <ROICalculator />
-      <Testimonials />
-      <Pricing onDemo={openDemo} />
-      <Trust />
-      <FAQ />
-      <LeadCapture />
+      <Reveal><LogoCloud /></Reveal>
+      <Reveal><Stats /></Reveal>
+      <Reveal><WorkflowSimulator /></Reveal>
+      <Reveal><Features /></Reveal>
+      <Reveal><Integrations /></Reveal>
+      <Reveal><ROICalculator /></Reveal>
+      <Reveal><Testimonials /></Reveal>
+      <Reveal><Pricing onDemo={openDemo} /></Reveal>
+      <Reveal><Trust /></Reveal>
+      <Reveal><FAQ /></Reveal>
+      <Reveal><LeadCapture /></Reveal>
       <DemoModal open={demoOpen} onClose={() => setDemoOpen(false)} />
     </main>
   );
