@@ -193,40 +193,41 @@ export function WorkflowSimulator() {
                       setPlaying(true);
                     }}
                     aria-label={`Go to ${s.title}`}
-                    className={`relative z-10 grid h-12 w-12 place-items-center rounded-full border-2 transition ${
+                    className={`relative z-10 grid h-12 w-12 place-items-center rounded-full transition overflow-visible ${
                       cur
-                        ? "border-transparent bg-brand text-primary-foreground shadow-glow scale-110"
+                        ? "bg-brand text-primary-foreground shadow-glow scale-110 ring-1 ring-teal/30"
                         : done
-                          ? "border-emerald/40 bg-emerald-soft text-emerald"
-                          : "border-border bg-white text-muted-foreground hover:border-teal/40"
+                          ? "bg-emerald-soft text-emerald ring-1 ring-emerald/30"
+                          : "bg-white text-muted-foreground ring-1 ring-border hover:ring-teal/40"
                     }`}
                   >
                     {done ? <Check size={18} /> : <Icon size={18} />}
                     {cur && (
                       <svg
-                        className="pointer-events-none absolute -inset-2 h-16 w-16"
-                        viewBox="0 0 64 64"
+                        className="pointer-events-none absolute -inset-[6px] h-[60px] w-[60px] overflow-visible"
+                        viewBox="0 0 60 60"
+                        aria-hidden
                       >
                         <circle
-                          cx="32"
-                          cy="32"
-                          r="30"
+                          cx="30"
+                          cy="30"
+                          r="28"
                           fill="none"
                           stroke="oklch(0.55 0.10 200)"
-                          strokeOpacity="0.18"
-                          strokeWidth="2.5"
+                          strokeOpacity="0.16"
+                          strokeWidth="2"
                         />
                         <circle
-                          cx="32"
-                          cy="32"
-                          r="30"
+                          cx="30"
+                          cy="30"
+                          r="28"
                           fill="none"
                           stroke="oklch(0.55 0.10 200)"
-                          strokeWidth="2.5"
+                          strokeWidth="2"
                           strokeLinecap="round"
-                          strokeDasharray={2 * Math.PI * 30}
-                          strokeDashoffset={2 * Math.PI * 30 * (1 - progress)}
-                          transform="rotate(-90 32 32)"
+                          strokeDasharray={2 * Math.PI * 28}
+                          strokeDashoffset={2 * Math.PI * 28 * (1 - progress)}
+                          transform="rotate(-90 30 30)"
                           style={{ transition: "stroke-dashoffset 80ms linear" }}
                         />
                       </svg>
