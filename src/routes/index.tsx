@@ -2,11 +2,16 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { Nav } from "@/components/landing/Nav";
 import { Hero } from "@/components/landing/Hero";
+import { LogoCloud } from "@/components/landing/LogoCloud";
+import { Stats } from "@/components/landing/Stats";
 import { WorkflowSimulator } from "@/components/landing/WorkflowSimulator";
 import { Features } from "@/components/landing/Features";
+import { Integrations } from "@/components/landing/Integrations";
 import { ROICalculator } from "@/components/landing/ROICalculator";
+import { Testimonials } from "@/components/landing/Testimonials";
 import { Pricing } from "@/components/landing/Pricing";
 import { Trust } from "@/components/landing/Trust";
+import { FAQ } from "@/components/landing/FAQ";
 import { LeadCapture } from "@/components/landing/LeadCapture";
 import { DemoModal } from "@/components/landing/DemoModal";
 
@@ -30,11 +35,16 @@ function Index() {
     <main className="min-h-screen bg-background text-foreground">
       <Nav onDemo={openDemo} />
       <Hero onDemo={openDemo} />
+      <LogoCloud />
+      <Stats />
       <WorkflowSimulator />
       <Features />
+      <Integrations />
       <ROICalculator />
+      <Testimonials />
       <Pricing onDemo={openDemo} />
       <Trust />
+      <FAQ />
       <LeadCapture />
       <DemoModal open={demoOpen} onClose={() => setDemoOpen(false)} />
     </main>
