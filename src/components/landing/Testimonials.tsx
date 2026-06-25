@@ -109,12 +109,14 @@ export function Testimonials() {
   );
 }
 
+type Item = (typeof items)[number];
+
 function Marquee({
-  items,
+  items: list,
   speed,
   reverse = false,
 }: {
-  items: typeof Testimonials extends never ? never : (typeof items extends Array<infer U> ? U : never)[] | any[];
+  items: Item[];
   speed: string;
   reverse?: boolean;
 }) {
