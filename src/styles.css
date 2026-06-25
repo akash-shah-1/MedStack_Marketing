@@ -76,6 +76,7 @@
   --destructive-foreground: oklch(0.99 0 0);
 
   --border: oklch(0.92 0.015 215);
+  --card-border: color-mix(in oklab, var(--teal-deep) 10%, transparent);
   --input: oklch(0.92 0.015 215);
   --ring: oklch(0.55 0.1 195);
 
