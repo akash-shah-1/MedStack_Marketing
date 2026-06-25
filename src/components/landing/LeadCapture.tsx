@@ -9,6 +9,7 @@ const footerCols: { title: string; items: { label: string; to: string }[] }[] = 
       { label: "Features", to: "/features" },
       { label: "Pricing", to: "/pricing" },
       { label: "Security", to: "/security" },
+      { label: "Integrations", to: "/integrations" },
     ],
   },
   {
@@ -16,6 +17,15 @@ const footerCols: { title: string; items: { label: string; to: string }[] }[] = 
     items: [
       { label: "About", to: "/about" },
       { label: "Contact", to: "/contact" },
+    ],
+  },
+  {
+    title: "Resources",
+    items: [
+      { label: "Docs", to: "/docs" },
+      { label: "HL7 / FHIR", to: "/integrations" },
+      { label: "Status", to: "/status" },
+      { label: "Changelog", to: "/changelog" },
     ],
   },
 ];
@@ -135,22 +145,14 @@ function Footer() {
               </ul>
             </div>
           ))}
-          <div>
-            <div className="text-xs font-semibold uppercase tracking-wider text-slate-ink">Resources</div>
-            <ul className="mt-4 space-y-2.5 text-sm text-muted-foreground">
-              {["Docs", "HL7 / FHIR", "Status", "Changelog"].map((i) => (
-                <li key={i}><span className="transition hover:text-teal">{i}</span></li>
-              ))}
-            </ul>
-          </div>
         </div>
 
         <div className="mt-12 flex flex-col items-start justify-between gap-3 border-t border-border pt-6 text-xs text-muted-foreground sm:flex-row sm:items-center">
           <span>© {new Date().getFullYear()} MedFlow AI, Inc. All rights reserved.</span>
           <div className="flex gap-5">
-            <a href="#" className="hover:text-teal">Privacy</a>
-            <a href="#" className="hover:text-teal">Terms</a>
-            <a href="#" className="hover:text-teal">DPA</a>
+            <Link to="/privacy" className="hover:text-teal">Privacy</Link>
+            <Link to="/terms" className="hover:text-teal">Terms</Link>
+            <Link to="/dpa" className="hover:text-teal">DPA</Link>
           </div>
         </div>
       </div>
