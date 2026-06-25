@@ -42,18 +42,18 @@ export function RoleConsole() {
       </div>
 
       <div className="mt-10 rounded-3xl border border-[color:var(--card-border)] bg-gradient-to-b from-white to-slate-50 p-2 shadow-glow">
-        <div className="rounded-[20px] bg-slate-ink p-6 md:p-8 text-white">
-          <div className="flex items-center justify-between border-b border-white/10 pb-4">
+        <div className="rounded-[20px] bg-white p-6 md:p-8 text-slate-ink border border-[color:var(--card-border)]">
+          <div className="flex items-center justify-between border-b border-border pb-4">
             <div className="flex items-center gap-3">
-              <div className="grid h-9 w-9 place-items-center rounded-lg bg-white/10">
+              <div className="grid h-9 w-9 place-items-center rounded-lg bg-emerald-soft text-teal-deep">
                 {(() => { const I = ROLES.find(r => r.key === role)!.icon; return <I size={18} />; })()}
               </div>
               <div>
-                <div className="text-xs text-white/60">{ROLES.find(r => r.key === role)!.tag}</div>
+                <div className="text-xs text-muted-foreground">{ROLES.find(r => r.key === role)!.tag}</div>
                 <div className="text-sm font-semibold">{ROLES.find(r => r.key === role)!.label} workspace</div>
               </div>
             </div>
-            <div className="hidden md:flex items-center gap-2 text-xs text-white/60">
+            <div className="hidden md:flex items-center gap-2 text-xs text-muted-foreground">
               <span className="h-2 w-2 rounded-full bg-emerald animate-pulse-glow" /> Live • synced 2s ago
             </div>
           </div>
