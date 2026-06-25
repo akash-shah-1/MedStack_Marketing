@@ -193,9 +193,9 @@ export function WorkflowSimulator() {
                       setPlaying(true);
                     }}
                     aria-label={`Go to ${s.title}`}
-                    className={`relative grid h-12 w-12 place-items-center rounded-full border-2 transition ${
+                    className={`relative z-10 grid h-12 w-12 place-items-center rounded-full border-2 transition ${
                       cur
-                        ? "border-teal bg-brand text-primary-foreground shadow-glow scale-110"
+                        ? "border-transparent bg-brand text-primary-foreground shadow-glow scale-110"
                         : done
                           ? "border-emerald/40 bg-emerald-soft text-emerald"
                           : "border-border bg-white text-muted-foreground hover:border-teal/40"
