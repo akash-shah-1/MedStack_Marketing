@@ -101,7 +101,7 @@ export function Testimonials() {
         </div>
       </div>
 
-      <div className="mt-14 space-y-5">
+      <div className="mt-14 space-y-6">
         <Marquee items={rowA} speed="animate-marquee" />
         <Marquee items={rowB} speed="animate-marquee-slow" reverse />
       </div>
@@ -122,7 +122,7 @@ function Marquee({
 }) {
   return (
     <div
-      className="group relative overflow-hidden"
+      className="group relative overflow-hidden py-4"
       style={{
         maskImage:
           "linear-gradient(90deg, transparent, black 8%, black 92%, transparent)",
@@ -141,3 +141,4 @@ function Marquee({
     </div>
   );
 }
+

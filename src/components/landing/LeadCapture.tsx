@@ -16,9 +16,11 @@ const footerCols: { title: string; items: { label: string; to: string }[] }[] = 
     title: "Company",
     items: [
       { label: "About", to: "/about" },
+      { label: "Team", to: "/team" },
       { label: "Contact", to: "/contact" },
     ],
   },
+
   {
     title: "Resources",
     items: [

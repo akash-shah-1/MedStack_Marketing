@@ -5,9 +5,11 @@ const links = [
   { label: "Features", to: "/features" },
   { label: "Pricing", to: "/pricing" },
   { label: "Security", to: "/security" },
+  { label: "Team", to: "/team" },
   { label: "About", to: "/about" },
   { label: "Contact", to: "/contact" },
 ] as const;
+
 
 export function Nav({ onDemo }: { onDemo: () => void }) {
   return (
