@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Plus, Minus } from "lucide-react";
+import { Plus } from "lucide-react";
 
 const faqs = [
   {
@@ -45,19 +45,21 @@ export function FAQ() {
           {faqs.map((f, i) => {
             const isOpen = open === i;
             return (
-              <div key={f.q} className="glass-panel overflow-hidden rounded-2xl">
+              <div key={f.q} className="glass-panel overflow-hidden rounded-2xl transition hover:shadow-glow">
                 <button
                   onClick={() => setOpen(isOpen ? -1 : i)}
                   className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
                 >
                   <span className="text-base font-semibold text-slate-ink">{f.q}</span>
-                  <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-teal/10 text-teal-deep">
-                    {isOpen ? <Minus size={14} /> : <Plus size={14} />}
+                  <span className={`grid h-7 w-7 shrink-0 place-items-center rounded-full bg-teal/10 text-teal-deep transition-transform duration-300 ${isOpen ? "rotate-45" : ""}`}>
+                    <Plus size={14} />
                   </span>
                 </button>
-                {isOpen && (
-                  <div className="px-6 pb-5 text-sm leading-relaxed text-muted-foreground">{f.a}</div>
-                )}
+                <div className={`faq-content ${isOpen ? "open" : ""}`}>
+                  <div>
+                    <div className="px-6 pb-5 text-sm leading-relaxed text-muted-foreground">{f.a}</div>
+                  </div>
+                </div>
               </div>
             );
           })}
