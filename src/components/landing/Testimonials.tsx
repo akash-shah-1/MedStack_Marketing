@@ -122,7 +122,7 @@ function Marquee({
 }) {
   return (
     <div
-      className="group relative overflow-hidden py-4"
+      className="group relative marquee-track"
       style={{
         maskImage:
           "linear-gradient(90deg, transparent, black 8%, black 92%, transparent)",
