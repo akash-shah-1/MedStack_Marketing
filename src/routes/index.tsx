@@ -15,6 +15,11 @@ import { FAQ } from "@/components/landing/FAQ";
 import { LeadCapture } from "@/components/landing/LeadCapture";
 import { DemoModal } from "@/components/landing/DemoModal";
 import { Reveal } from "@/components/landing/Reveal";
+import { RoleConsole } from "@/components/landing/RoleConsole";
+import { BedMap } from "@/components/landing/BedMap";
+import { InteropFlow } from "@/components/landing/InteropFlow";
+import { AIInsights } from "@/components/landing/AIInsights";
+import { BeforeAfter } from "@/components/landing/BeforeAfter";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -39,7 +44,12 @@ function Index() {
       <Reveal><LogoCloud /></Reveal>
       <Reveal><Stats /></Reveal>
       <Reveal><WorkflowSimulator /></Reveal>
+      <Reveal><RoleConsole /></Reveal>
+      <Reveal><BedMap /></Reveal>
       <Reveal><Features /></Reveal>
+      <Reveal><AIInsights /></Reveal>
+      <Reveal><InteropFlow /></Reveal>
+      <Reveal><BeforeAfter /></Reveal>
       <Reveal><Integrations /></Reveal>
       <Reveal><ROICalculator /></Reveal>
       <Reveal><Testimonials /></Reveal>
