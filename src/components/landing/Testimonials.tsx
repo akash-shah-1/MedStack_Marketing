@@ -134,7 +134,7 @@ function Marquee({
         className={`flex w-max gap-5 ${speed} group-hover:[animation-play-state:paused]`}
         style={{ animationDirection: reverse ? "reverse" : "normal" }}
       >
-        {[...items, ...items].map((t: any, i: number) => (
+        {[...list, ...list].map((t, i) => (
           <Card key={`${t.name}-${i}`} t={t} />
         ))}
       </div>
