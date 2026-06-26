@@ -16,7 +16,6 @@ import { Route as SecurityRouteImport } from './routes/security'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as IntegrationsRouteImport } from './routes/integrations'
-import { Route as FlightMarkupRouteImport } from './routes/flight-markup'
 import { Route as FeaturesRouteImport } from './routes/features'
 import { Route as DpaRouteImport } from './routes/dpa'
 import { Route as DocsRouteImport } from './routes/docs'
@@ -58,11 +57,6 @@ const PricingRoute = PricingRouteImport.update({
 const IntegrationsRoute = IntegrationsRouteImport.update({
   id: '/integrations',
   path: '/integrations',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const FlightMarkupRoute = FlightMarkupRouteImport.update({
-  id: '/flight-markup',
-  path: '/flight-markup',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FeaturesRoute = FeaturesRouteImport.update({
@@ -109,7 +103,6 @@ export interface FileRoutesByFullPath {
   '/docs': typeof DocsRoute
   '/dpa': typeof DpaRoute
   '/features': typeof FeaturesRoute
-  '/flight-markup': typeof FlightMarkupRoute
   '/integrations': typeof IntegrationsRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
@@ -126,7 +119,6 @@ export interface FileRoutesByTo {
   '/docs': typeof DocsRoute
   '/dpa': typeof DpaRoute
   '/features': typeof FeaturesRoute
-  '/flight-markup': typeof FlightMarkupRoute
   '/integrations': typeof IntegrationsRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
@@ -144,7 +136,6 @@ export interface FileRoutesById {
   '/docs': typeof DocsRoute
   '/dpa': typeof DpaRoute
   '/features': typeof FeaturesRoute
-  '/flight-markup': typeof FlightMarkupRoute
   '/integrations': typeof IntegrationsRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
@@ -163,7 +154,6 @@ export interface FileRouteTypes {
     | '/docs'
     | '/dpa'
     | '/features'
-    | '/flight-markup'
     | '/integrations'
     | '/pricing'
     | '/privacy'
@@ -180,7 +170,6 @@ export interface FileRouteTypes {
     | '/docs'
     | '/dpa'
     | '/features'
-    | '/flight-markup'
     | '/integrations'
     | '/pricing'
     | '/privacy'
@@ -197,7 +186,6 @@ export interface FileRouteTypes {
     | '/docs'
     | '/dpa'
     | '/features'
-    | '/flight-markup'
     | '/integrations'
     | '/pricing'
     | '/privacy'
@@ -215,7 +203,6 @@ export interface RootRouteChildren {
   DocsRoute: typeof DocsRoute
   DpaRoute: typeof DpaRoute
   FeaturesRoute: typeof FeaturesRoute
-  FlightMarkupRoute: typeof FlightMarkupRoute
   IntegrationsRoute: typeof IntegrationsRoute
   PricingRoute: typeof PricingRoute
   PrivacyRoute: typeof PrivacyRoute
@@ -274,13 +261,6 @@ declare module '@tanstack/react-router' {
       path: '/integrations'
       fullPath: '/integrations'
       preLoaderRoute: typeof IntegrationsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/flight-markup': {
-      id: '/flight-markup'
-      path: '/flight-markup'
-      fullPath: '/flight-markup'
-      preLoaderRoute: typeof FlightMarkupRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/features': {
@@ -343,7 +323,6 @@ const rootRouteChildren: RootRouteChildren = {
   DocsRoute: DocsRoute,
   DpaRoute: DpaRoute,
   FeaturesRoute: FeaturesRoute,
-  FlightMarkupRoute: FlightMarkupRoute,
   IntegrationsRoute: IntegrationsRoute,
   PricingRoute: PricingRoute,
   PrivacyRoute: PrivacyRoute,
