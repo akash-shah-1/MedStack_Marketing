@@ -175,7 +175,7 @@ export function WorkflowSimulator() {
           {/* Track + progress are inset to align with first/last icon centers (10% .. 90% for 5 cols) */}
           <div className="absolute left-[10%] right-[10%] top-6 h-px bg-border" />
           <div
-            className="absolute left-[10%] top-6 h-px bg-gradient-to-r from-teal to-emerald"
+            className="absolute left-[10%] top-6 h-px bg-gradient-to-r from-teal to-emerald transition-all duration-500"
             style={{
               width: `${((active + (playing ? progress : 0)) / (stages.length - 1)) * 80}%`,
             }}
@@ -285,15 +285,15 @@ export function WorkflowSimulator() {
               <div className="mb-3 flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
                 <ClipboardList size={12} className="text-teal" /> Live activity
               </div>
-              <ol className="relative space-y-3 pl-7">
-                <span className="absolute left-[10px] top-2 bottom-2 w-px bg-border" />
+              <ol className="relative space-y-3 pl-4">
+                <span className="absolute left-1 top-1.5 bottom-1.5 w-px bg-border" />
                 {Stage.timeline.map((row, i) => (
                   <li
                     key={`${active}-${row.t}-${i}`}
                     className="relative animate-rise"
                     style={{ animationDelay: `${i * 140 + 120}ms` }}
                   >
-                    <span className="absolute left-[-20px] top-1.5 grid h-3 w-3 place-items-center rounded-full bg-emerald ring-2 ring-white animate-blip">
+                    <span className="absolute -left-[11px] top-1.5 grid h-3 w-3 place-items-center rounded-full bg-emerald animate-blip">
                       <span className="h-1 w-1 rounded-full bg-white" />
                     </span>
                     <div className="flex items-baseline justify-between gap-3">
