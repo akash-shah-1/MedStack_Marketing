@@ -1,10 +1,33 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowRight, BedDouble, Users, Wallet, Activity, HeartPulse, Stethoscope } from "lucide-react";
+import { Magnetic } from "./Magnetic";
 
 export function Hero({ onDemo }: { onDemo: () => void }) {
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const handleMove = (e: React.MouseEvent) => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    el.style.setProperty("--mx", `${e.clientX - r.left}px`);
+    el.style.setProperty("--my", `${e.clientY - r.top}px`);
+  };
   return (
-    <section id="top" className="relative overflow-hidden bg-hero pt-28 pb-16 sm:pt-40 sm:pb-24">
+    <section
+      id="top"
+      ref={sectionRef}
+      onMouseMove={handleMove}
+      className="relative overflow-hidden bg-hero pt-28 pb-16 sm:pt-40 sm:pb-24"
+    >
       <div className="absolute inset-0 grid-bg pointer-events-none" />
+      {/* Cursor-follow spotlight */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-0 opacity-90 transition-opacity duration-500"
+        style={{
+          background:
+            "radial-gradient(420px circle at var(--mx, 50%) var(--my, 30%), color-mix(in oklab, var(--teal-glow) 32%, transparent), transparent 60%)",
+        }}
+      />
       <div className="absolute left-1/2 top-1/3 -z-0 h-[480px] w-[480px] -translate-x-1/2 rounded-full bg-teal-glow/30 blur-[120px]" />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6">
@@ -22,19 +45,21 @@ export function Hero({ onDemo }: { onDemo: () => void }) {
             high-performance platform — purpose-built for the rhythm of real hospitals.
           </p>
           <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <button
+            <Magnetic
               onClick={onDemo}
-              className="group inline-flex items-center gap-2 rounded-full bg-brand px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-glow transition hover:opacity-95"
+              className="group inline-flex items-center gap-2 rounded-full bg-brand px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-glow hover:opacity-95"
             >
               Schedule a Live Demo
               <ArrowRight size={16} className="transition group-hover:translate-x-1" />
-            </button>
-            <a
+            </Magnetic>
+            <Magnetic
+              as="a"
               href="#workflows"
-              className="inline-flex items-center gap-2 rounded-full glass-panel px-6 py-3.5 text-sm font-semibold text-slate-ink transition hover:bg-white"
+              strength={0.25}
+              className="inline-flex items-center gap-2 rounded-full glass-panel px-6 py-3.5 text-sm font-semibold text-slate-ink hover:bg-white"
             >
               Explore Interactive Workflows
-            </a>
+            </Magnetic>
           </div>
         </div>
 

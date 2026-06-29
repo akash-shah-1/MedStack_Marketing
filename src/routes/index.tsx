@@ -15,6 +15,7 @@ import { FAQ } from "@/components/landing/FAQ";
 import { LeadCapture } from "@/components/landing/LeadCapture";
 import { DemoModal } from "@/components/landing/DemoModal";
 import { Reveal } from "@/components/landing/Reveal";
+import { ScrollProgress } from "@/components/landing/ScrollProgress";
 
 export const Route = createFileRoute("/")({
   head: () => ({
