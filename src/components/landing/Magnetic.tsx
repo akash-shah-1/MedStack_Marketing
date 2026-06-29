@@ -1,19 +1,22 @@
-import { useRef, type ReactNode, type ElementType, type ComponentPropsWithoutRef } from "react";
+import { useRef, type ReactNode } from "react";
 
-type MagneticProps<T extends ElementType> = {
-  as?: T;
+type MagneticProps = {
+  as?: "button" | "a";
   strength?: number;
+  className?: string;
   children: ReactNode;
-} & Omit<ComponentPropsWithoutRef<T>, "as" | "children">;
+  onClick?: (e: React.MouseEvent) => void;
+  href?: string;
+  type?: "button" | "submit" | "reset";
+};
 
-export function Magnetic<T extends ElementType = "button">({
-  as,
+export function Magnetic({
+  as = "button",
   strength = 0.35,
   children,
   className = "",
   ...rest
-}: MagneticProps<T>) {
-  const Tag = (as || "button") as ElementType;
+}: MagneticProps) {
   const ref = useRef<HTMLElement | null>(null);
 
   const handleMove = (e: React.MouseEvent) => {
@@ -30,15 +33,16 @@ export function Magnetic<T extends ElementType = "button">({
     el.style.transform = "translate(0,0)";
   };
 
-  return (
-    <Tag
-      ref={ref as never}
-      onMouseMove={handleMove}
-      onMouseLeave={handleLeave}
-      className={`inline-block transition-transform duration-300 ease-out will-change-transform ${className}`}
-      {...rest}
-    >
-      {children}
-    </Tag>
-  );
+  const sharedProps = {
+    ref: ref as never,
+    onMouseMove: handleMove,
+    onMouseLeave: handleLeave,
+    className: `inline-block transition-transform duration-300 ease-out will-change-transform ${className}`,
+    ...rest,
+  };
+
+  if (as === "a") {
+    return <a {...(sharedProps as React.AnchorHTMLAttributes<HTMLAnchorElement>)}>{children}</a>;
+  }
+  return <button {...(sharedProps as React.ButtonHTMLAttributes<HTMLButtonElement>)}>{children}</button>;
 }

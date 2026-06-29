@@ -35,6 +35,7 @@ function Index() {
 
   return (
     <main className="min-h-screen bg-background text-foreground">
+      <ScrollProgress />
       <Nav onDemo={openDemo} />
       <Hero onDemo={openDemo} />
       <Reveal><LogoCloud /></Reveal>
