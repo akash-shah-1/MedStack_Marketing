@@ -3,21 +3,21 @@ import { ArrowRight, BedDouble, Users, Wallet, Activity, HeartPulse, Stethoscope
 
 export function Hero({ onDemo }: { onDemo: () => void }) {
   return (
-    <section id="top" className="relative overflow-hidden bg-hero pt-32 pb-24 sm:pt-40">
+    <section id="top" className="relative overflow-hidden bg-hero pt-28 pb-16 sm:pt-40 sm:pb-24">
       <div className="absolute inset-0 grid-bg pointer-events-none" />
       <div className="absolute left-1/2 top-1/3 -z-0 h-[480px] w-[480px] -translate-x-1/2 rounded-full bg-teal-glow/30 blur-[120px]" />
 
-      <div className="relative mx-auto max-w-7xl px-6">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6">
         <div className="mx-auto max-w-3xl text-center animate-rise">
-          <span className="inline-flex items-center gap-2 rounded-full glass-panel px-4 py-1.5 text-xs font-medium text-teal-deep">
+          <span className="inline-flex items-center gap-2 rounded-full glass-panel px-3 py-1.5 text-[11px] font-medium text-teal-deep sm:px-4 sm:text-xs">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald animate-pulse-glow" />
             Trusted by 200+ care networks across 14 countries
           </span>
-          <h1 className="mt-6 text-balance text-5xl font-bold leading-[1.05] tracking-tight text-slate-ink sm:text-6xl lg:text-7xl">
+          <h1 className="mt-5 text-balance text-4xl font-bold leading-[1.05] tracking-tight text-slate-ink sm:mt-6 sm:text-6xl lg:text-7xl">
             The Operating System for{" "}
             <span className="text-gradient-brand">Modern Hospitals</span>
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-pretty text-lg text-muted-foreground">
+          <p className="mx-auto mt-5 max-w-2xl text-pretty text-base text-muted-foreground sm:mt-6 sm:text-lg">
             Unify clinical workflows, live bed management, and revenue cycles in a single,
             high-performance platform — purpose-built for the rhythm of real hospitals.
           </p>
@@ -52,10 +52,10 @@ function CommandCenter() {
   }, []);
 
   return (
-    <div className="relative mx-auto mt-20 max-w-6xl">
+    <div className="relative mx-auto mt-12 max-w-6xl sm:mt-20">
       <div className="absolute -inset-6 -z-10 rounded-[2rem] bg-teal-glow/20 blur-3xl" />
-      <div className="glass-panel rounded-3xl p-3 shadow-glow sm:p-5">
-        <div className="rounded-2xl bg-gradient-to-br from-slate-ink to-[oklch(0.2_0.04_220)] p-6 text-white sm:p-8">
+      <div className="glass-panel rounded-2xl p-2 shadow-glow sm:rounded-3xl sm:p-5">
+        <div className="rounded-xl bg-gradient-to-br from-slate-ink to-[oklch(0.2_0.04_220)] p-4 text-white sm:rounded-2xl sm:p-8">
           {/* Window chrome */}
           <div className="flex items-center justify-between border-b border-white/10 pb-4">
             <div className="flex items-center gap-2">
