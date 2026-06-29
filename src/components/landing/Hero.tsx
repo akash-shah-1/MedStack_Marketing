@@ -52,10 +52,10 @@ function CommandCenter() {
   }, []);
 
   return (
-    <div className="relative mx-auto mt-20 max-w-6xl">
+    <div className="relative mx-auto mt-12 max-w-6xl sm:mt-20">
       <div className="absolute -inset-6 -z-10 rounded-[2rem] bg-teal-glow/20 blur-3xl" />
-      <div className="glass-panel rounded-3xl p-3 shadow-glow sm:p-5">
-        <div className="rounded-2xl bg-gradient-to-br from-slate-ink to-[oklch(0.2_0.04_220)] p-6 text-white sm:p-8">
+      <div className="glass-panel rounded-2xl p-2 shadow-glow sm:rounded-3xl sm:p-5">
+        <div className="rounded-xl bg-gradient-to-br from-slate-ink to-[oklch(0.2_0.04_220)] p-4 text-white sm:rounded-2xl sm:p-8">
           {/* Window chrome */}
           <div className="flex items-center justify-between border-b border-white/10 pb-4">
             <div className="flex items-center gap-2">
