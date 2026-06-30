@@ -98,7 +98,7 @@ function Compare() {
               <div className="p-5 text-teal">MedFlow AI</div>
               <div className="p-5 text-slate-ink/70">{v.name}</div>
             </div>
-            {v.rows.map((r, i) => (
+            {v.rows.map((r: Row, i: number) => (
               <div
                 key={r.feature}
                 className={`grid grid-cols-3 items-center border-b border-border last:border-0 ${

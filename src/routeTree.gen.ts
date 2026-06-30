@@ -19,10 +19,15 @@ import { Route as IntegrationsRouteImport } from './routes/integrations'
 import { Route as FeaturesRouteImport } from './routes/features'
 import { Route as DpaRouteImport } from './routes/dpa'
 import { Route as DocsRouteImport } from './routes/docs'
+import { Route as CustomersRouteImport } from './routes/customers'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ChangelogRouteImport } from './routes/changelog'
+import { Route as CaseStudiesRouteImport } from './routes/case-studies'
+import { Route as BlogRouteImport } from './routes/blog'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CompareVendorRouteImport } from './routes/compare.$vendor'
+import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
@@ -74,6 +79,11 @@ const DocsRoute = DocsRouteImport.update({
   path: '/docs',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CustomersRoute = CustomersRouteImport.update({
+  id: '/customers',
+  path: '/customers',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
@@ -82,6 +92,16 @@ const ContactRoute = ContactRouteImport.update({
 const ChangelogRoute = ChangelogRouteImport.update({
   id: '/changelog',
   path: '/changelog',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CaseStudiesRoute = CaseStudiesRouteImport.update({
+  id: '/case-studies',
+  path: '/case-studies',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogRoute = BlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -94,12 +114,25 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CompareVendorRoute = CompareVendorRouteImport.update({
+  id: '/compare/$vendor',
+  path: '/compare/$vendor',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => BlogRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/blog': typeof BlogRouteWithChildren
+  '/case-studies': typeof CaseStudiesRoute
   '/changelog': typeof ChangelogRoute
   '/contact': typeof ContactRoute
+  '/customers': typeof CustomersRoute
   '/docs': typeof DocsRoute
   '/dpa': typeof DpaRoute
   '/features': typeof FeaturesRoute
@@ -110,12 +143,17 @@ export interface FileRoutesByFullPath {
   '/status': typeof StatusRoute
   '/team': typeof TeamRoute
   '/terms': typeof TermsRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/compare/$vendor': typeof CompareVendorRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/blog': typeof BlogRouteWithChildren
+  '/case-studies': typeof CaseStudiesRoute
   '/changelog': typeof ChangelogRoute
   '/contact': typeof ContactRoute
+  '/customers': typeof CustomersRoute
   '/docs': typeof DocsRoute
   '/dpa': typeof DpaRoute
   '/features': typeof FeaturesRoute
@@ -126,13 +164,18 @@ export interface FileRoutesByTo {
   '/status': typeof StatusRoute
   '/team': typeof TeamRoute
   '/terms': typeof TermsRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/compare/$vendor': typeof CompareVendorRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/blog': typeof BlogRouteWithChildren
+  '/case-studies': typeof CaseStudiesRoute
   '/changelog': typeof ChangelogRoute
   '/contact': typeof ContactRoute
+  '/customers': typeof CustomersRoute
   '/docs': typeof DocsRoute
   '/dpa': typeof DpaRoute
   '/features': typeof FeaturesRoute
@@ -143,14 +186,19 @@ export interface FileRoutesById {
   '/status': typeof StatusRoute
   '/team': typeof TeamRoute
   '/terms': typeof TermsRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/compare/$vendor': typeof CompareVendorRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/about'
+    | '/blog'
+    | '/case-studies'
     | '/changelog'
     | '/contact'
+    | '/customers'
     | '/docs'
     | '/dpa'
     | '/features'
@@ -161,12 +209,17 @@ export interface FileRouteTypes {
     | '/status'
     | '/team'
     | '/terms'
+    | '/blog/$slug'
+    | '/compare/$vendor'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
+    | '/blog'
+    | '/case-studies'
     | '/changelog'
     | '/contact'
+    | '/customers'
     | '/docs'
     | '/dpa'
     | '/features'
@@ -177,12 +230,17 @@ export interface FileRouteTypes {
     | '/status'
     | '/team'
     | '/terms'
+    | '/blog/$slug'
+    | '/compare/$vendor'
   id:
     | '__root__'
     | '/'
     | '/about'
+    | '/blog'
+    | '/case-studies'
     | '/changelog'
     | '/contact'
+    | '/customers'
     | '/docs'
     | '/dpa'
     | '/features'
@@ -193,13 +251,18 @@ export interface FileRouteTypes {
     | '/status'
     | '/team'
     | '/terms'
+    | '/blog/$slug'
+    | '/compare/$vendor'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  BlogRoute: typeof BlogRouteWithChildren
+  CaseStudiesRoute: typeof CaseStudiesRoute
   ChangelogRoute: typeof ChangelogRoute
   ContactRoute: typeof ContactRoute
+  CustomersRoute: typeof CustomersRoute
   DocsRoute: typeof DocsRoute
   DpaRoute: typeof DpaRoute
   FeaturesRoute: typeof FeaturesRoute
@@ -210,6 +273,7 @@ export interface RootRouteChildren {
   StatusRoute: typeof StatusRoute
   TeamRoute: typeof TeamRoute
   TermsRoute: typeof TermsRoute
+  CompareVendorRoute: typeof CompareVendorRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -284,6 +348,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/customers': {
+      id: '/customers'
+      path: '/customers'
+      fullPath: '/customers'
+      preLoaderRoute: typeof CustomersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/contact': {
       id: '/contact'
       path: '/contact'
@@ -296,6 +367,20 @@ declare module '@tanstack/react-router' {
       path: '/changelog'
       fullPath: '/changelog'
       preLoaderRoute: typeof ChangelogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/case-studies': {
+      id: '/case-studies'
+      path: '/case-studies'
+      fullPath: '/case-studies'
+      preLoaderRoute: typeof CaseStudiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog': {
+      id: '/blog'
+      path: '/blog'
+      fullPath: '/blog'
+      preLoaderRoute: typeof BlogRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -312,14 +397,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/compare/$vendor': {
+      id: '/compare/$vendor'
+      path: '/compare/$vendor'
+      fullPath: '/compare/$vendor'
+      preLoaderRoute: typeof CompareVendorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof BlogRoute
+    }
   }
 }
+
+interface BlogRouteChildren {
+  BlogSlugRoute: typeof BlogSlugRoute
+}
+
+const BlogRouteChildren: BlogRouteChildren = {
+  BlogSlugRoute: BlogSlugRoute,
+}
+
+const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  BlogRoute: BlogRouteWithChildren,
+  CaseStudiesRoute: CaseStudiesRoute,
   ChangelogRoute: ChangelogRoute,
   ContactRoute: ContactRoute,
+  CustomersRoute: CustomersRoute,
   DocsRoute: DocsRoute,
   DpaRoute: DpaRoute,
   FeaturesRoute: FeaturesRoute,
@@ -330,17 +442,8 @@ const rootRouteChildren: RootRouteChildren = {
   StatusRoute: StatusRoute,
   TeamRoute: TeamRoute,
   TermsRoute: TermsRoute,
+  CompareVendorRoute: CompareVendorRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
