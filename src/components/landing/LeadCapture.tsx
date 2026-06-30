@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowRight, CheckCircle2, Activity } from "lucide-react";
+import { ArrowRight, CheckCircle2, Activity, Mail } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 
 const footerCols: { title: string; items: { label: string; to: string }[] }[] = [
@@ -17,17 +17,26 @@ const footerCols: { title: string; items: { label: string; to: string }[] }[] = 
     items: [
       { label: "About", to: "/about" },
       { label: "Team", to: "/team" },
+      { label: "Customers", to: "/customers" },
       { label: "Contact", to: "/contact" },
     ],
   },
-
   {
     title: "Resources",
     items: [
+      { label: "Case studies", to: "/case-studies" },
+      { label: "Blog", to: "/blog" },
       { label: "Docs", to: "/docs" },
       { label: "HL7 / FHIR", to: "/integrations" },
       { label: "Status", to: "/status" },
       { label: "Changelog", to: "/changelog" },
+    ],
+  },
+  {
+    title: "Compare",
+    items: [
+      { label: "vs Epic", to: "/compare/epic" },
+      { label: "vs Cerner", to: "/compare/cerner" },
     ],
   },
 ];
@@ -114,11 +123,55 @@ function Field({ label, ...props }: React.InputHTMLAttributes<HTMLInputElement> 
   );
 }
 
+function Newsletter() {
+  const [done, setDone] = useState(false);
+  return (
+    <div className="mb-12 grid gap-6 rounded-3xl border border-border bg-gradient-to-br from-emerald-soft/40 to-teal-glow/20 p-6 sm:p-8 md:grid-cols-2 md:items-center">
+      <div>
+        <div className="inline-flex items-center gap-2 rounded-full bg-white/70 px-3 py-1 text-xs font-medium text-teal-deep">
+          <Mail size={13} /> Insights, monthly
+        </div>
+        <h3 className="mt-3 text-2xl font-bold tracking-tight text-slate-ink">
+          One email a month. Real lessons from real hospitals.
+        </h3>
+        <p className="mt-1 text-sm text-muted-foreground">
+          Benchmarks, playbooks and product deep dives — no fluff.
+        </p>
+      </div>
+      {done ? (
+        <div className="rounded-2xl bg-white/80 p-5 text-center">
+          <CheckCircle2 className="mx-auto mb-2 text-emerald" />
+          <div className="text-sm font-semibold text-slate-ink">Subscribed. Watch your inbox.</div>
+        </div>
+      ) : (
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            setDone(true);
+          }}
+          className="flex flex-col gap-2 sm:flex-row"
+        >
+          <input
+            type="email"
+            required
+            placeholder="you@hospital.com"
+            className="flex-1 rounded-xl border border-border bg-white/80 px-4 py-3 text-sm text-slate-ink outline-none focus:border-teal focus:ring-2 focus:ring-teal/20"
+          />
+          <button className="rounded-xl bg-brand px-5 py-3 text-sm font-semibold text-primary-foreground shadow-glow hover:opacity-95">
+            Subscribe
+          </button>
+        </form>
+      )}
+    </div>
+  );
+}
+
 function Footer() {
   return (
     <footer className="mt-24 border-t border-border pt-12">
       <div className="mx-auto max-w-7xl px-6 pb-10">
-        <div className="grid gap-10 md:grid-cols-5">
+        <Newsletter />
+        <div className="grid gap-10 md:grid-cols-6">
           <div className="md:col-span-2">
             <div className="flex items-center gap-2">
               <span className="grid h-8 w-8 place-items-center rounded-xl bg-brand text-primary-foreground">

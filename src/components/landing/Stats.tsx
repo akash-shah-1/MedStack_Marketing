@@ -1,10 +1,11 @@
 import { Building2, Users, Globe2, ShieldCheck } from "lucide-react";
+import { AnimatedNumber } from "./AnimatedNumber";
 
 const stats = [
-  { icon: Building2, value: "200+", label: "Hospitals onboarded", detail: "From 80-bed clinics to 1,200-bed networks" },
-  { icon: Users, value: "38,000+", label: "Daily clinical users", detail: "Doctors, nurses, billing & ops teams" },
-  { icon: Globe2, value: "14", label: "Countries deployed", detail: "Multi-region, multi-currency, multi-tenant" },
-  { icon: ShieldCheck, value: "99.99%", label: "Platform uptime", detail: "Active-active across 3 regions" },
+  { icon: Building2, value: 200, suffix: "+", label: "Hospitals onboarded", detail: "From 80-bed clinics to 1,200-bed networks" },
+  { icon: Users, value: 38000, suffix: "+", label: "Daily clinical users", detail: "Doctors, nurses, billing & ops teams" },
+  { icon: Globe2, value: 14, suffix: "", label: "Countries deployed", detail: "Multi-region, multi-currency, multi-tenant" },
+  { icon: ShieldCheck, value: 99.99, suffix: "%", decimals: 2, label: "Platform uptime", detail: "Active-active across 3 regions" },
 ];
 
 export function Stats() {
@@ -25,7 +26,9 @@ export function Stats() {
               <span className="grid h-10 w-10 place-items-center rounded-xl bg-brand text-primary-foreground shadow-glow">
                 <s.icon size={18} />
               </span>
-              <div className="mt-4 text-4xl font-bold tracking-tight text-slate-ink tabular-nums">{s.value}</div>
+              <div className="mt-4 text-4xl font-bold tracking-tight text-slate-ink">
+                <AnimatedNumber value={s.value} suffix={s.suffix} decimals={s.decimals ?? 0} />
+              </div>
               <div className="mt-1 text-sm font-semibold text-slate-ink">{s.label}</div>
               <div className="mt-1 text-xs text-muted-foreground">{s.detail}</div>
             </div>

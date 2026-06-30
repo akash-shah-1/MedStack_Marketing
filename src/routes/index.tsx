@@ -6,6 +6,8 @@ import { LogoCloud } from "@/components/landing/LogoCloud";
 import { Stats } from "@/components/landing/Stats";
 import { WorkflowSimulator } from "@/components/landing/WorkflowSimulator";
 import { Features } from "@/components/landing/Features";
+import { ProductTour } from "@/components/landing/ProductTour";
+import { ModuleExplorer } from "@/components/landing/ModuleExplorer";
 import { Integrations } from "@/components/landing/Integrations";
 import { ROICalculator } from "@/components/landing/ROICalculator";
 import { Testimonials } from "@/components/landing/Testimonials";
@@ -16,6 +18,8 @@ import { LeadCapture } from "@/components/landing/LeadCapture";
 import { DemoModal } from "@/components/landing/DemoModal";
 import { Reveal } from "@/components/landing/Reveal";
 import { ScrollProgress } from "@/components/landing/ScrollProgress";
+import { StickyMobileCTA } from "@/components/landing/StickyMobileCTA";
+import { ExitIntentModal } from "@/components/landing/ExitIntentModal";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -41,7 +45,9 @@ function Index() {
       <Reveal><LogoCloud /></Reveal>
       <Reveal><Stats /></Reveal>
       <Reveal><WorkflowSimulator /></Reveal>
+      <Reveal><ProductTour /></Reveal>
       <Reveal><Features /></Reveal>
+      <Reveal><ModuleExplorer /></Reveal>
       <Reveal><Integrations /></Reveal>
       <Reveal><ROICalculator /></Reveal>
       <Reveal><Testimonials /></Reveal>
@@ -50,6 +56,8 @@ function Index() {
       <Reveal><FAQ /></Reveal>
       <Reveal><LeadCapture /></Reveal>
       <DemoModal open={demoOpen} onClose={() => setDemoOpen(false)} />
+      <StickyMobileCTA onDemo={openDemo} />
+      <ExitIntentModal />
     </main>
   );
 }

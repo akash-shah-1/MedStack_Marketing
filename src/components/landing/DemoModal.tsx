@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
-import { X, CheckCircle2 } from "lucide-react";
+import { X, CheckCircle2, Calendar, FormInput } from "lucide-react";
 
 export function DemoModal({ open, onClose }: { open: boolean; onClose: () => void }) {
   const [sent, setSent] = useState(false);
+  const [mode, setMode] = useState<"calendar" | "form">("calendar");
 
   useEffect(() => {
-    if (!open) setSent(false);
+    if (!open) {
+      setSent(false);
+      setMode("calendar");
+    }
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
     if (open) window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -16,7 +20,7 @@ export function DemoModal({ open, onClose }: { open: boolean; onClose: () => voi
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 animate-fade-in">
       <div className="absolute inset-0 bg-slate-ink/60 backdrop-blur-md" onClick={onClose} />
-      <div className="relative w-full max-w-lg glass-panel rounded-3xl p-8 animate-scale-in shadow-glow">
+      <div className="relative w-full max-w-2xl glass-panel rounded-3xl p-6 sm:p-8 animate-scale-in shadow-glow max-h-[92vh] overflow-y-auto">
         <button
           onClick={onClose}
           className="absolute right-4 top-4 rounded-full p-2 text-muted-foreground hover:bg-muted transition"
@@ -35,7 +39,7 @@ export function DemoModal({ open, onClose }: { open: boolean; onClose: () => voi
           </div>
         ) : (
           <>
-            <div className="mb-6">
+            <div className="mb-5">
               <span className="inline-flex items-center gap-2 rounded-full bg-emerald-soft/60 px-3 py-1 text-xs font-medium text-teal-deep">
                 <span className="h-1.5 w-1.5 rounded-full bg-emerald animate-pulse-glow" />
                 30-min live walkthrough
@@ -44,28 +48,61 @@ export function DemoModal({ open, onClose }: { open: boolean; onClose: () => voi
               <p className="mt-1 text-sm text-muted-foreground">See MedFlow AI orchestrate a full patient lifecycle in real time.</p>
             </div>
 
-            <form
-              className="space-y-3"
-              onSubmit={(e) => {
-                e.preventDefault();
-                setSent(true);
-              }}
-            >
-              <Field label="Full name" name="name" placeholder="Dr. Anjali Rao" />
-              <Field label="Hospital email" name="email" type="email" placeholder="anjali@apollocare.com" />
-              <Field label="Hospital name" name="hospital" placeholder="Apollo Care Network" />
-              <div className="grid grid-cols-2 gap-3">
-                <Field label="Bed count" name="beds" type="number" placeholder="120" />
-                <Field label="Role" name="role" placeholder="CMO / IT Director" />
-              </div>
+            <div className="mb-5 inline-flex rounded-full bg-muted/60 p-1 text-xs font-semibold">
               <button
-                type="submit"
-                className="mt-2 w-full rounded-xl bg-brand px-4 py-3 text-sm font-semibold text-primary-foreground shadow-glow transition hover:opacity-95"
+                onClick={() => setMode("calendar")}
+                className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 transition ${
+                  mode === "calendar" ? "bg-white text-slate-ink shadow" : "text-muted-foreground"
+                }`}
               >
-                Book my demo
+                <Calendar size={13} /> Pick a time
               </button>
-              <p className="text-center text-[11px] text-muted-foreground">HIPAA-grade handling. We never share your data.</p>
-            </form>
+              <button
+                onClick={() => setMode("form")}
+                className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 transition ${
+                  mode === "form" ? "bg-white text-slate-ink shadow" : "text-muted-foreground"
+                }`}
+              >
+                <FormInput size={13} /> Request callback
+              </button>
+            </div>
+
+            {mode === "calendar" ? (
+              <div className="overflow-hidden rounded-2xl border border-border bg-white">
+                <iframe
+                  title="Book a demo"
+                  src="https://cal.com/demo?embed=true&theme=light"
+                  className="h-[520px] w-full"
+                  loading="lazy"
+                />
+                <div className="border-t border-border bg-white/70 px-4 py-2 text-center text-[11px] text-muted-foreground">
+                  Times shown in your local timezone. HIPAA-grade handling.
+                </div>
+              </div>
+            ) : (
+              <form
+                className="space-y-3"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  setSent(true);
+                }}
+              >
+                <Field label="Full name" name="name" placeholder="Dr. Anjali Rao" />
+                <Field label="Hospital email" name="email" type="email" placeholder="anjali@apollocare.com" />
+                <Field label="Hospital name" name="hospital" placeholder="Apollo Care Network" />
+                <div className="grid grid-cols-2 gap-3">
+                  <Field label="Bed count" name="beds" type="number" placeholder="120" />
+                  <Field label="Role" name="role" placeholder="CMO / IT Director" />
+                </div>
+                <button
+                  type="submit"
+                  className="mt-2 w-full rounded-xl bg-brand px-4 py-3 text-sm font-semibold text-primary-foreground shadow-glow transition hover:opacity-95"
+                >
+                  Request my demo
+                </button>
+                <p className="text-center text-[11px] text-muted-foreground">HIPAA-grade handling. We never share your data.</p>
+              </form>
+            )}
           </>
         )}
       </div>
