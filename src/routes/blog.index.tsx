@@ -3,7 +3,7 @@ import { PageShell } from "@/components/landing/PageShell";
 import { Reveal } from "@/components/landing/Reveal";
 import { ArrowRight, Clock } from "lucide-react";
 
-export const Route = createFileRoute("/blog")({
+export const Route = createFileRoute("/blog/")({
   head: () => ({
     meta: [
       { title: "Insights — MedFlow AI Blog" },
